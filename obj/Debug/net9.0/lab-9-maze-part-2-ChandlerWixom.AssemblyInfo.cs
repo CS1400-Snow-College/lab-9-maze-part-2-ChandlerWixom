@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("lab-9-maze-part-2-ChandlerWixom")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dba017615122342d8ec18628735d5f7759f040a0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e95397e77634d46e686b40c9f70e83c70ecb50a")]
 [assembly: System.Reflection.AssemblyProductAttribute("lab-9-maze-part-2-ChandlerWixom")]
 [assembly: System.Reflection.AssemblyTitleAttribute("lab-9-maze-part-2-ChandlerWixom")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
