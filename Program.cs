@@ -14,6 +14,50 @@ Console.Clear();
 WriteMap(mapRows);
 Console.ForegroundColor = ConsoleColor.DarkGreen;
 
+// Running Loop
+Console.SetCursorPosition(0,0);
+do
+{
+    Movement(KeyRead());
+}
+while (true);
+
+// Movement 
+string KeyRead()
+{
+    ConsoleKey key = Console.ReadKey(true).Key;
+    return Convert.ToString(key);
+}
+
+void Movement(string move)
+{
+    if (move == "Escape")
+    {
+        ;
+    }
+    else if (move == "W" || move == "UpArrow")
+    {
+        Console.CursorTop--;
+    }
+    else if (move == "S" || move == "DownArrow")
+    {
+        Console.CursorTop++;
+    }
+    else if (move == "A" || move == "LeftArrow")
+    {
+        Console.CursorLeft--;
+    }
+    else if (move == "D" || move == "RightArrow")
+    {
+        Console.CursorLeft++;
+    }
+    else
+    {
+        ;
+    }
+}
+
+
 // Write Map
 void WriteMap(string[] map)
 {
