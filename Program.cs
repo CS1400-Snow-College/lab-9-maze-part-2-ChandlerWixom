@@ -22,11 +22,65 @@ do
 }
 while (true);
 
-// Movement 
+// Movement methods
 string KeyRead()
 {
     ConsoleKey key = Console.ReadKey(true).Key;
     return Convert.ToString(key);
+}
+
+
+// movement check
+bool CanMove(string move)
+{
+    if (move == "up")
+    {
+        if (Console.CursorTop < 1)
+        {
+            return false;
+        }
+        else 
+        {
+            return true;
+        }
+    }
+    else if (move == "down")
+    {
+        if (Console.CursorTop >= mapRows.Length - 1)
+        {
+            return false;
+        }
+        else 
+        {
+            return true;
+        }
+    }
+    else if (move == "right")
+    {
+        if (Console.CursorLeft >= mapRows[1].Length - 1)
+        {
+            return false;
+        }
+        else 
+        {
+            return true;
+        }
+    }
+    else if (move == "left")
+    {
+        if (Console.CursorLeft <= 0)
+        {
+            return false;
+        }
+        else 
+        {
+            return true;
+        }
+    }
+    else
+    {
+        return false;
+    }
 }
 
 void Movement(string move)
@@ -37,18 +91,22 @@ void Movement(string move)
     }
     else if (move == "W" || move == "UpArrow")
     {
+        if (CanMove("up"))
         Console.CursorTop--;
     }
     else if (move == "S" || move == "DownArrow")
     {
+        if (CanMove("down"))
         Console.CursorTop++;
     }
     else if (move == "A" || move == "LeftArrow")
     {
+        if (CanMove("left"))
         Console.CursorLeft--;
     }
     else if (move == "D" || move == "RightArrow")
     {
+        if (CanMove("right"))
         Console.CursorLeft++;
     }
     else
