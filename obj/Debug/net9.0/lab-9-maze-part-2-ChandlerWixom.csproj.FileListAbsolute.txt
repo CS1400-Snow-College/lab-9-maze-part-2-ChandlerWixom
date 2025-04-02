@@ -1,0 +1,15 @@
+c:\Users\Frost\my-code-dir\lab-9-maze-part-2-ChandlerWixom\bin\Debug\net9.0\lab-9-maze-part-2-ChandlerWixom.exe
+C:\Users\Frost\my-code-dir\lab-9-maze-part-2-ChandlerWixom\bin\Debug\net9.0\lab-9-maze-part-2-ChandlerWixom.deps.json
+C:\Users\Frost\my-code-dir\lab-9-maze-part-2-ChandlerWixom\bin\Debug\net9.0\lab-9-maze-part-2-ChandlerWixom.runtimeconfig.json
+c:\Users\Frost\my-code-dir\lab-9-maze-part-2-ChandlerWixom\bin\Debug\net9.0\lab-9-maze-part-2-ChandlerWixom.dll
+c:\Users\Frost\my-code-dir\lab-9-maze-part-2-ChandlerWixom\bin\Debug\net9.0\lab-9-maze-part-2-ChandlerWixom.pdb
+c:\Users\Frost\my-code-dir\lab-9-maze-part-2-ChandlerWixom\obj\Debug\net9.0\lab-9-maze-part-2-ChandlerWixom.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\Frost\my-code-dir\lab-9-maze-part-2-ChandlerWixom\obj\Debug\net9.0\lab-9-maze-part-2-ChandlerWixom.AssemblyInfoInputs.cache
+c:\Users\Frost\my-code-dir\lab-9-maze-part-2-ChandlerWixom\obj\Debug\net9.0\lab-9-maze-part-2-ChandlerWixom.AssemblyInfo.cs
+c:\Users\Frost\my-code-dir\lab-9-maze-part-2-ChandlerWixom\obj\Debug\net9.0\lab-9-maze-part-2-ChandlerWixom.csproj.CoreCompileInputs.cache
+c:\Users\Frost\my-code-dir\lab-9-maze-part-2-ChandlerWixom\obj\Debug\net9.0\lab-9-maze-part-2-ChandlerWixom.sourcelink.json
+c:\Users\Frost\my-code-dir\lab-9-maze-part-2-ChandlerWixom\obj\Debug\net9.0\lab-9-maze-part-2-ChandlerWixom.dll
+c:\Users\Frost\my-code-dir\lab-9-maze-part-2-ChandlerWixom\obj\Debug\net9.0\refint\lab-9-maze-part-2-ChandlerWixom.dll
+c:\Users\Frost\my-code-dir\lab-9-maze-part-2-ChandlerWixom\obj\Debug\net9.0\lab-9-maze-part-2-ChandlerWixom.pdb
+C:\Users\Frost\my-code-dir\lab-9-maze-part-2-ChandlerWixom\obj\Debug\net9.0\lab-9-maze-part-2-ChandlerWixom.genruntimeconfig.cache
+C:\Users\Frost\my-code-dir\lab-9-maze-part-2-ChandlerWixom\obj\Debug\net9.0\ref\lab-9-maze-part-2-ChandlerWixom.dll
