@@ -1,6 +1,8 @@
 ﻿// Chandler Wixom, 4/2/2025, lab 9 maze part 2
 
 // Introduction
+using System.ComponentModel;
+
 Console.BackgroundColor = ConsoleColor.DarkGray;
 Console.ForegroundColor = ConsoleColor.Gray;
 Console.Clear();
@@ -14,23 +16,51 @@ Console.Clear();
 WriteMap(mapRows);
 Console.ForegroundColor = ConsoleColor.DarkGreen;
 
-// Running Loop
+// Active Running Loop
 Console.SetCursorPosition(0,0);
+bool pass;
 do
 {
-    Movement(KeyRead());
-}
-while (true);
+    pass = Movement(KeyRead());
 
-// Movement methods
+}
+while (!pass);
+
+
+
+
+
+
+
+
+
+// Movement methods ---------------------------------------------------------------
+
+
+//Reads the key and returning a string of the key ---------------------------
 string KeyRead()
 {
     ConsoleKey key = Console.ReadKey(true).Key;
     return Convert.ToString(key);
 }
 
+// Wall Check
+bool WallCheck(int top, int left)
+{
+    char temp = mapRows[Console.CursorTop - top][Console.CursorLeft + left];
+    if ( temp == '*' || temp == '|')
+    {
+        return true;
+    }
+    else 
+    {
+        return false;
+    }
+}
 
-// movement check
+
+
+// movement check sees if player is allowed to move -------------------------------
 bool CanMove(string move)
 {
     if (move == "up")
@@ -41,7 +71,14 @@ bool CanMove(string move)
         }
         else 
         {
+            if (WallCheck(1,0))
+            {
+                return false;
+            }
+            else
+            {
             return true;
+            }
         }
     }
     else if (move == "down")
@@ -52,7 +89,14 @@ bool CanMove(string move)
         }
         else 
         {
+             if (WallCheck(-1,0))
+            {
+                return false;
+            }
+            else
+            {
             return true;
+            }
         }
     }
     else if (move == "right")
@@ -63,7 +107,14 @@ bool CanMove(string move)
         }
         else 
         {
+             if (WallCheck(0,1))
+            {
+                return false;
+            }
+            else
+            {
             return true;
+            }
         }
     }
     else if (move == "left")
@@ -74,7 +125,14 @@ bool CanMove(string move)
         }
         else 
         {
+             if (WallCheck(0,-1))
+            {
+                return false;
+            }
+            else
+            {
             return true;
+            }
         }
     }
     else
@@ -83,40 +141,49 @@ bool CanMove(string move)
     }
 }
 
-void Movement(string move)
+// runs a movement check and if true then player moves ------------------------------------
+bool Movement(string move)
 {
     if (move == "Escape")
     {
-        ;
+        return true;
     }
     else if (move == "W" || move == "UpArrow")
     {
         if (CanMove("up"))
         Console.CursorTop--;
+
+        return false;
     }
     else if (move == "S" || move == "DownArrow")
     {
         if (CanMove("down"))
         Console.CursorTop++;
+
+        return false;
     }
     else if (move == "A" || move == "LeftArrow")
     {
         if (CanMove("left"))
         Console.CursorLeft--;
+
+        return false;
     }
     else if (move == "D" || move == "RightArrow")
     {
         if (CanMove("right"))
         Console.CursorLeft++;
+
+        return false;
     }
     else
     {
-        ;
+        return false;
     }
 }
 
 
-// Write Map
+// Loop Writes Map --------------------------------------------------------------
 void WriteMap(string[] map)
 {
     foreach (var row in map)
