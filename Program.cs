@@ -2,7 +2,9 @@
 
 // Introduction
 using System.ComponentModel;
+using System.Drawing;
 using System.Net.Http.Headers;
+using System.Xml.Serialization;
 
 Console.BackgroundColor = ConsoleColor.DarkGray;
 Console.ForegroundColor = ConsoleColor.Gray;
@@ -20,17 +22,42 @@ Console.ForegroundColor = ConsoleColor.DarkGreen;
 // Active Running Loop
 Console.SetCursorPosition(0,0);
 (bool esc, bool moved) pass;
+bool dead = false;
 var badguyLocation = BadGuys();
+var coins = CoinLocation(10);
+var gems = GemLocation(9);
+int score = 0;
+char banned = '|';
+bool WallGone = false;
 Random random = new Random();
 do
 
 {
+      if (score >= 1000 && !WallGone)
+    {
+        banned = '=';
+        RemoveWall();
+        WallGone = true;
+    }
     
     pass = Movement(KeyRead());
     if (pass.moved)
+    {
+        
+
+        if (LocationCheck())
+        break;
+
         BadGuysMove();
+
+         if (LocationCheck())
+        break;
+        WriteScore();
+    }
+    
+
 }
-while (!pass.esc);
+while (!pass.esc || dead);
 
 
 
@@ -80,10 +107,11 @@ string KeyRead()
 }
 
 // Wall Check
+
 bool WallCheck(int top, int left)
 {
     char temp = mapRows[Console.CursorTop - top][Console.CursorLeft + left];
-    if ( temp == '*' || temp == '|')
+    if ( temp == '*' || temp == banned)
     {
         return true;
     }
@@ -289,6 +317,7 @@ for (int i = 0; i < badguyLocation.Length; i++)
 }
 
 
+// random movement for the bad guys
 string RandomMovement()
 {
     int randind = random.Next(0,4);
@@ -309,4 +338,133 @@ string RandomMovement()
     {
         return "left";
     }
+}
+
+
+// checks if the player is on anything specific
+bool LocationCheck()
+{
+    (int x, int y) player = Console.GetCursorPosition();
+    if (player == badguyLocation[0] || player == badguyLocation[1])
+    {
+        Console.Clear();
+        Console.WriteLine("YOU ARE DEAD");
+        return true;
+    }
+    else if (mapRows[player.y][player.x] == '#')
+    {
+        WriteWin();
+        return true;
+    }
+    else
+    {
+    for (int i = 0; i < coins.Length; i++)
+    {
+        if (player == coins[i])
+        {
+            Console.Write(" ");
+            Console.CursorLeft--;
+            coins[i] = (mapRows.Length, mapRows[1].Length);
+            score = score + 100;
+        }
+    }
+    
+
+      
+    for (int i = 0; i < gems.Length; i++)
+    {
+        if (player == gems[i])
+        {
+            Console.Write(" ");
+            Console.CursorLeft--;
+            gems[i] = (mapRows.Length, mapRows[1].Length);
+            score = score + 500;
+        }
+    }
+    return false;
+    }
+}
+
+
+// locate coins
+// look for ^ and remembers theri location
+(int x, int y)[] CoinLocation(int coincount)
+{
+    (int x, int y)[] coins = new (int x, int y)[coincount];
+    int count = 0;
+    for (int i = 0; i < mapRows.Length; i++)
+    {
+        for (int j = 0; j < mapRows[i].Length; j++)
+        {
+            if (mapRows[i][j] == '^')
+            {
+                coins[count] = (j, i);
+                count++;
+            }
+        }
+    }
+    return coins;
+}
+
+// locate gems
+// look for $ and remembers theri location
+(int x, int y)[] GemLocation(int coincount)
+{
+    (int x, int y)[] gems = new (int x, int y)[coincount];
+    int count = 0;
+    for (int i = 0; i < mapRows.Length; i++)
+    {
+        for (int j = 0; j < mapRows[i].Length; j++)
+        {
+            if (mapRows[i][j] == '$')
+            {
+                gems[count] = (j, i);
+                count++;
+            }
+        }
+    }
+    return gems;
+}
+
+void WriteScore()
+{
+    (int, int) temp = Console.GetCursorPosition();
+    Console.SetCursorPosition(15, mapRows.Length);
+    Console.ForegroundColor = ConsoleColor.Green;
+    Console.WriteLine($"Score: {score}");
+    Console.ForegroundColor = ConsoleColor.Gray;
+    Console.SetCursorPosition(temp.Item1, temp.Item2);
+}
+
+
+
+
+// look for | and deletes them
+void RemoveWall()
+{
+    (int x, int y) player = Console.GetCursorPosition();
+    for (int i = 0; i < mapRows.Length; i++)
+    {
+        for (int j = 0; j < mapRows[i].Length; j++)
+        {
+            if (mapRows[i][j] == '|')
+            {
+                Console.SetCursorPosition(j,i);
+                Console.Write("    ");
+                Console.SetCursorPosition(player.x,player.y);
+            }
+        }
+    }
+}
+
+
+void WriteWin()
+{
+    Console.BackgroundColor = ConsoleColor.Green;
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.Clear();
+    Console.SetCursorPosition(0,3);
+    Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    Console.WriteLine("!!          YOU WIN          !!");
+    Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 }
